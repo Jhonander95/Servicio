@@ -1,0 +1,101 @@
+<div class="dialog-card">
+  <div class="card">
+    <div class="card-header text-center">
+      <h1 mat-dialog-title >Nuevo Usuario</h1>
+    </div>
+    <div class="card-body ">
+      <div mat-dialog-content  >
+          <form [formGroup]="form" (ngSubmit)="addCliente(form)">
+            <div class="col-12">
+              <div class="form-group col-12">
+                <mat-form-field class="custom-field">
+                  <label for="nombre">* Nombre: {{nombre?.value}} </label>
+                  <input matInput placeholder="Nombre" formControlName="nombre">
+                  <mat-error >El nombre es requerido</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="form-group">
+                <mat-form-field class="custom-field">
+                  <label for="nombre">* Telefono: {{telefono?.value}} </label>
+                  <input matInput placeholder="Teléfono" formControlName="telefono">
+                  <mat-error >El teléfono es requerido</mat-error>
+                  <mat-error >El teléfono debe tener máximo 10 caracteres</mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="form-group">
+                <mat-form-field class="custom-field">
+                  <label for="nombre">Empresa: {{empresa?.value}} </label>
+                  <input matInput placeholder="Empresa" formControlName="empresa">
+                </mat-form-field>
+              </div>
+              <div mat-dialog-actions class="button-container card-footer">
+                <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Agregar cliente</button>
+                <button mat-raised-button color="accent" (click)="close()">Cancelar</button>
+              </div>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div mat-dialog-actions>
+  <button mat-raised-button (click)="close()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="addCliente()">Guardar</button>
+</div> -->
+<!-- <div class="dialog-card">
+  <div class="card">
+    <div class="card-header text-center">
+      <h1  style="text-align: center" mat-dialog-title>{{ cliente ? 'Editar' : 'Nuevo' }} usuario</h1>
+    </div>
+    <div class="card-body">
+      <div mat-dialog-content>
+        <form [formGroup]="form" (ngSubmit)="addCliente(form.value)">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="nombre">Nombre: {{nombre?.value}} </label>
+              <input
+                type="text"
+                class="form-control rounded-pill"
+
+                formControlName="nombre"
+                id="nombre"
+                placeholder="Maria"
+              />
+            </div>
+            <div class="col-12">
+              <div class="form-group">
+                <label for="telefono">Telefono: {{telefono?.value}} </label>
+                <input
+                  type="tel"
+                  class="form-control rounded-pill"
+                  formControlName="telefono"
+                  id="telefono"
+                  placeholder="3501237890"
+                />
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="empresa">Empresa: {{empresa?.value}} </label>
+                  <input
+                    type="text"
+                    class="form-control rounded-pill"
+                    formControlName="empresa"
+                    id="empresa"
+                    placeholder="Hermanitas de la caridad"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div mat-dialog-actions class="card-footer">
+        <button mat-raised-button (click)="close()">Cancelar</button>
+        <button mat-raised-button color="primary" type="submit">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+ -->

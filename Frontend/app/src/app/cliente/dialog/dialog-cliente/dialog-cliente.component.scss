@@ -1,0 +1,20 @@
+.dialog-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  .mat-form-field {
+    width: 100%;
+    max-width: 1400px; /* ajustar el valor a tu preferencia */
+
+    .mat-input-element {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+
+.card {
+  width: 100%;
+}
