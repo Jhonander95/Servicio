@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -13,6 +13,7 @@ import { ApiclienteService } from 'src/app/services/apicliente.service';
 export class DialogClienteComponent {
 
   form!: FormGroup;
+  cliente!: Cliente;
   validationMessages: any;
 
 
@@ -21,13 +22,12 @@ export class DialogClienteComponent {
     public dialogRef: MatDialogRef<DialogClienteComponent>,
     public apiCliente: ApiclienteService,
     public snackBar: MatSnackBar,
-/*     @Inject(MAT_DIALOG_DATA) public cliente: Cliente */
+    @Inject(MAT_DIALOG_DATA) public data: {cliente: Cliente}
   ){
     this.buildForm();
- /*    if(this.cliente !== null) {
-      this.form = cliente;
-    } */
   }
+
+
 
   // declare getters for each field
   get nombre() {
@@ -55,18 +55,13 @@ export class DialogClienteComponent {
   }
 
   addCliente(form: any) {
-    const cliente: Cliente = {
-      nombre: this.form.value.nombre,
-      telefono: this.form.value.telefono,
-      empresa: this.form.value.empresa
-    }
-    this.apiCliente.add(cliente).subscribe(response => {
+    this.apiCliente.add(form).subscribe(response => {
       if(response.exito === 1){
         this.dialogRef.close();
         this.snackBar.open('Cliente insertado correctamente, Bitch', '',{
           duration: 2000
         });
-        console.log(cliente);
+        console.log(form);
       }
     });
   }

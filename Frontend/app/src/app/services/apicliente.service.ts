@@ -25,6 +25,11 @@ export class ApiclienteService {
     return this._http.get<Response>(this.url);
   }
 
+  getClienteById(id: number): Observable<Cliente> {
+    const url = `${this.url}/${id}`;
+    return this._http.get<Cliente>(url);
+  }
+
   add(cliente: Cliente): Observable<Response> {
     return  this._http.post<Response>(this.url, cliente, httpOption);
   }

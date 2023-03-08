@@ -16,13 +16,15 @@ import { ClienteComponent } from './cliente/cliente.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { DialogClienteComponent } from './cliente/dialog/dialog-cliente/dialog-cliente.component';
+import { DialogClienteEditComponent } from './cliente/dialog/dialog-cliente-edit/dialog-cliente-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ClienteComponent,
-    DialogClienteComponent
+    DialogClienteComponent,
+    DialogClienteEditComponent
   ],
   imports: [
     BrowserModule,
