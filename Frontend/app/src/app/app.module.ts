@@ -17,6 +17,7 @@ import { ClienteComponent } from './cliente/cliente.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DialogClienteComponent } from './cliente/dialog/dialog-cliente/dialog-cliente.component';
 import { DialogClienteEditComponent } from './cliente/dialog/dialog-cliente-edit/dialog-cliente-edit.component';
+import { DialogDeleteComponent } from './common/dialog-delete/dialog-delete.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { DialogClienteEditComponent } from './cliente/dialog/dialog-cliente-edit
     HomeComponent,
     ClienteComponent,
     DialogClienteComponent,
-    DialogClienteEditComponent
+    DialogClienteEditComponent,
+    DialogDeleteComponent
   ],
   imports: [
     BrowserModule,

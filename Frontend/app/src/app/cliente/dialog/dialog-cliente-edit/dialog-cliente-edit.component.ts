@@ -55,9 +55,9 @@ export class DialogClienteEditComponent {
       empresa: [this.data.cliente.empresa]
     });
   } */
-  close() {
+/*   close() {
     this.dialogRef.close();
-  }
+  } */
 
   editCliente(form: any) {
     const clienteModificado = {
@@ -67,7 +67,6 @@ export class DialogClienteEditComponent {
       empresa: form.empresa,
     };
     console.log(clienteModificado);
-
     this.apiCliente.edit(clienteModificado).subscribe(response => {
       if(response.exito === 1){
         this.dialogRef.close();
