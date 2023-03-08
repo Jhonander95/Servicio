@@ -7,7 +7,7 @@ public partial class Cliente
 {
     public long Id { get; set; }
 
-    public string Nombre { get; set; } = null!;
+    public string Nombre { get; set; } 
 
     public long Telefono { get; set; }
 

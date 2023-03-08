@@ -28,6 +28,7 @@ export class DialogClienteEditComponent {
     console.log(this.data);
 
     this.form = this.fb.group({
+      id: [this.data?.id, [Validators.required]],
       nombre: [this.data?.nombre, [Validators.required]],
       telefono: [this.data?.telefono, [Validators.required, Validators.maxLength(10)]],
       empresa: [this.data?.empresa]
@@ -65,6 +66,8 @@ export class DialogClienteEditComponent {
       telefono: form.telefono,
       empresa: form.empresa,
     };
+    console.log(clienteModificado);
+
     this.apiCliente.edit(clienteModificado).subscribe(response => {
       if(response.exito === 1){
         this.dialogRef.close();
