@@ -1,3 +1,9 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using WSServicio.Models.Common;
+using WSServicio.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 string MiCors = "MiCors";
@@ -18,6 +24,33 @@ builder.Services.AddCors(options =>{
                             builder.WithMethods("*");
                         });
 });
+builder.Services.AddScoped<IUserService, UserService>();
+
+var appSettingsSection = builder.Configuration.GetSection("AppSettings");
+builder.Services.Configure<AppSettings>(appSettingsSection);
+
+//jwt
+
+var appSettings = appSettingsSection.Get<AppSettings>();
+var llave = Encoding.ASCII.GetBytes(appSettings.Secreto);
+
+builder.Services.AddAuthentication(d =>
+{
+    d.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    d.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+    .AddJwtBearer(d =>
+    {
+        d.RequireHttpsMetadata = false;
+        d.SaveToken = true;
+        d.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(llave),
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
+    });
 
 var app = builder.Build();
 
@@ -29,6 +62,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

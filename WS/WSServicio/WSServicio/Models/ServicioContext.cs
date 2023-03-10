@@ -23,6 +23,8 @@ public partial class ServicioContext : DbContext
 
     public virtual DbSet<Orden> Ordens { get; set; }
 
+    public virtual DbSet<Usuario> Usuarios { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Server=(localdb)\\JT;Database=Servicio;Trusted_Connection=True;");
@@ -148,6 +150,25 @@ public partial class ServicioContext : DbContext
                 .HasForeignKey(d => d.IdCliente)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_orden_cliente");
+        });
+
+        modelBuilder.Entity<Usuario>(entity =>
+        {
+            entity.ToTable("usuario");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Email)
+                .HasMaxLength(120)
+                .IsFixedLength()
+                .HasColumnName("email");
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(50)
+                .IsFixedLength()
+                .HasColumnName("nombre");
+            entity.Property(e => e.Password)
+                .HasMaxLength(256)
+                .IsFixedLength()
+                .HasColumnName("password");
         });
 
         OnModelCreatingPartial(modelBuilder);
