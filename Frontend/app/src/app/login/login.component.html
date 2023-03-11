@@ -14,7 +14,7 @@
                   </mat-form-field>
               </p>
               <div  class="botones" >
-                  <button type="submit"  mat-raised-button > Iniciar Sesión</button>
+                  <button type="submit" [disabled]="!form.valid" mat-raised-button > Iniciar Sesión</button>
               </div>
           </form>
       </mat-card-content>

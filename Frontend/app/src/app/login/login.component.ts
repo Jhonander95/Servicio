@@ -47,11 +47,9 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    console.log(this.form.value);
 
-    let email = this.form.value.email
-    let password = this.form.value.password
-
-    this.apiauthService.login(email, password).subscribe(response => {
+    this.apiauthService.login(this.form.value).subscribe(response => {
       if (response.exito === 1) {
         this.router.navigate(['/']);
       }

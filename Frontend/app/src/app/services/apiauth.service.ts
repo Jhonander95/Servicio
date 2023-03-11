@@ -33,9 +33,9 @@ export class ApiauthService {
      this.usuario = this.usuarioSubject.asObservable();
     }
 
-    login(email: string, password: string): Observable<Response>{
+    login(login: Login): Observable<Response>{
         //return this._http.post<Response>(this.url, {email, password}, httpOption);
-         return this._http.post<Response>(this.url, {email, password}, httpOption).pipe(
+         return this._http.post<Response>(this.url, login, httpOption).pipe(
           map(res => {
             if (res.exito === 1){
               const usuario: Usuario = res.data;
